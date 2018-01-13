@@ -1,0 +1,70 @@
+#include "stdafx.h"
+#include "conio.h"
+#include "math.h"
+#include <iostream>
+
+using namespace std;
+void naturales (int n);
+void naturalesInvertidos (int n);
+void Pares (int n);
+
+void main()
+{
+	int n;
+	cout<<"Ingrese un numero n: ";
+	cin>>n;
+	cout<<endl;
+
+	cout<<"Los enteros hasta n son: "<<endl;
+	naturales (n);
+
+	cout<<endl<<"Los enteros invertidos hasta n son: "<<endl;
+	naturalesInvertidos (n);
+
+	cout<<endl<<"Los numeros pares que estan entre n son: "<<endl;
+	Pares (n);
+
+	getch();
+}
+
+void naturales (int n)
+{
+	if (n==0)
+	{
+
+	}
+	else
+	{
+		naturales (n-1);
+		cout<<n<<"\t";
+	}
+}
+
+void naturalesInvertidos (int n)
+{
+	if (n==0)
+	{
+
+	}
+	else
+	{
+		cout<<n<<"\t";
+		naturalesInvertidos (n-1);	
+	}
+}
+
+void Pares (int n)
+{
+	if (n==0)
+	{
+
+	}
+	else
+	{
+		Pares (n-1);
+		if (n%2==0)
+		{
+			cout<<n<<"\t";
+		}
+	}
+}
