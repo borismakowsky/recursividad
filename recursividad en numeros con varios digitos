@@ -1,5 +1,4 @@
 
-
 #include "stdafx.h"
 #include "conio.h"
 #include "math.h"
@@ -10,10 +9,11 @@ int sumaDigitos (int n);
 void mostrarDigitos (int n);
 int cantidadPares (int n);
 int sumaPares (int n);
+int digitoMayor (int n);
 
 void main()
 {
-	int n,sDigitos,mDigitos,cantPares,sPares;
+	int n,sDigitos,mDigitos,cantPares,sPares,dMayor;
 	cout<<"Ingrese un numero n: ";
 	cin>>n;
 	cout<<endl;
@@ -30,6 +30,9 @@ void main()
 
 	sPares= sumaPares (n);
 	cout<<endl<<"La suma de los digitos pares de n es: "<<sPares;
+
+	dMayor= digitoMayor (n);
+	cout<<endl<<"El digito mayor de n es: "<<dMayor;
 
 
 	getch();
@@ -98,4 +101,21 @@ int sumaPares (int n)
 		else
 			return x;
 	}
+}
+
+int digitoMayor (int n)
+{
+	if (n<10)
+	{
+		return n;
+	}
+	else
+	{
+		int x=digitoMayor (n/10);
+		if ((n%10)>x)
+			return (n%10);
+		else
+			return x;
+	}
+
 }
