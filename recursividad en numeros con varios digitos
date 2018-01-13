@@ -1,0 +1,101 @@
+
+
+#include "stdafx.h"
+#include "conio.h"
+#include "math.h"
+#include <iostream>
+
+using namespace std;
+int sumaDigitos (int n);
+void mostrarDigitos (int n);
+int cantidadPares (int n);
+int sumaPares (int n);
+
+void main()
+{
+	int n,sDigitos,mDigitos,cantPares,sPares;
+	cout<<"Ingrese un numero n: ";
+	cin>>n;
+	cout<<endl;
+
+	sDigitos= sumaDigitos (n);
+	cout<<"La suma de los digitos de n es: "<<sDigitos;
+
+	cout<<endl<<"Los digitos invertidos de n son: ";
+	mostrarDigitos (n);
+
+	
+	cantPares= cantidadPares (n);
+	cout<<endl<<"La cantidad de digitos pares de n es: "<<cantPares;
+
+	sPares= sumaPares (n);
+	cout<<endl<<"La suma de los digitos pares de n es: "<<sPares;
+
+
+	getch();
+}
+
+int sumaDigitos (int n)
+{
+	if (n<10)
+	{
+		return n;
+	}
+	else
+	{
+		int s= sumaDigitos (n/10);
+		return s+(n%10);
+	}
+}
+
+void mostrarDigitos (int n)
+{
+	if (n<10)
+	{
+		cout<<n;
+	}
+	else
+	{
+		cout<<n%10;
+		mostrarDigitos (n/10);
+	}
+}
+
+int cantidadPares (int n)
+{
+	if (n<10)
+	{
+		if (n%2==0)
+			return 1;
+		else
+			return 0;
+	}
+	else
+	{
+		int x= cantidadPares (n/10);
+		if ((n%10)%2==0)
+			return x+1;
+		else
+			return x;
+	}
+
+}
+
+int sumaPares (int n)
+{
+	if (n<10)
+	{
+		if (n%2==0)
+			return n;
+		else
+			return 0;
+	}
+	else
+	{
+		int x= sumaPares(n/10);
+		if ((n%10)%2==0)
+			return x+(n%10);
+		else
+			return x;
+	}
+}
