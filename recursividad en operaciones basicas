@@ -1,0 +1,136 @@
+
+#include "stdafx.h"
+#include "conio.h"
+#include "math.h"
+#include <iostream>
+
+using namespace std;
+int factorial (int n);
+int suma (int n);
+int sumaPares (int n);
+int contadorPares (int n);
+int sumaCuadrados (int n);
+float serieFactorial (float m);
+int potenciaXY (int n,int y);
+
+void main()
+{
+	int n,f, s, spares,contPares,sCuadrados,potenciaxy,y;
+	float serie,m;
+	cout<<"Se realizaran diferentes operaciones basicas utilizando recursividad: "<<endl;
+	cout<<"Ingrese n: ";
+	cin>>n;
+	cout<<endl<<endl;
+	f=factorial (n);
+	cout<<endl<<"--------------------------------------------------------"<<endl;
+	cout<<"El factorial es: "<<f;
+
+	s=suma (n);
+	cout<<endl<<"La suma total es: "<<s;
+
+	spares=sumaPares (n);
+	cout<<endl<<"La suma de pares es: "<<spares;
+
+	contPares= contadorPares (n);
+	cout<<endl<<"La cantidad de pares existente es: "<<contPares;
+
+	sCuadrados=sumaCuadrados (n);
+	cout<<endl<<"La suma de los cuadrados es: "<<sCuadrados;
+
+	cout<<endl<<"--------------------------------------------------------"<<endl;
+	cout<<endl<<"Ingrese la potencia para realizar potenciaXY: ";
+	cin>>y;
+	potenciaxy=potenciaXY (n,y);
+	cout<<endl<<"La potencia de "<<n<<" elevado a "<<y<<" es: "<<potenciaxy;
+
+	cout<<endl<<"--------------------------------------------------------"<<endl;
+	cout<<endl<<endl<<endl<<"Ingrese una n para realizar la serie: ";
+	cin>>m;
+	serie= serieFactorial (m);
+	cout<<endl<<"La suma de la serie es: "<<serie;
+	cout<<endl<<"--------------------------------------------------------"<<endl;
+	getch();
+}
+
+int factorial (int n)
+{
+	if (n==0)
+		return 1;
+	else
+	{
+		int x= factorial (n-1);
+		return x*n;
+	}
+}
+
+int suma (int n)
+{
+	if (n==0)
+		return 0;
+	else
+	{
+		int x= suma (n-1);
+		return x+n;
+	}
+}
+
+int sumaPares (int n)
+{
+	if (n==0)
+		return 0;
+	else
+	{
+		int x= sumaPares (n-1);
+		if (n%2==0)
+			return x+n;
+		else
+			return x;
+	}
+}
+
+int contadorPares (int n)
+{
+	if (n==0)
+		return 0;
+	else
+	{
+		int x= contadorPares (n-1);
+		if (n%2==0)
+			return x+1;
+		else
+			return x;
+	}
+}
+
+int sumaCuadrados (int n)
+{
+	if (n==0)
+		return 0;
+	else
+	{
+		int x= sumaCuadrados (n-1);
+		return x+(n*n);
+	}
+}
+
+float serieFactorial (float m)
+{
+	if (m==0)
+		return 0;
+	else
+	{
+		float x= serieFactorial (m-1);
+		return x+(factorial (m)/(m*m));
+	}
+}
+
+int potenciaXY (int n,int y)
+{
+	if (y==0)
+		return 1;
+	else
+	{
+		int x= potenciaXY (n,y-1);
+		return x*n;
+	}
+}
