@@ -1,0 +1,82 @@
+
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#define MAX 50
+
+using namespace std;
+void cargarVector (int v[], int n);
+void mostrarVector (int v[], int n);
+int mayorCercano (int v[], int n,int x);
+
+void main()
+{
+	int v[MAX],n,mayor,x;
+	cout<<"Dimension del vector: ";
+	cin>>n;
+	cargarVector (v,n);
+	cout<<endl;
+	mostrarVector (v,n);
+	cout<<endl;
+	cout<<"Escriba el numero para buscar su mayor cercano: ";
+	cin>>x;
+	mayor=mayorCercano(v,n,x);
+	cout<<"El mayor cercano es: "<<mayor;
+	getch();
+}
+
+void cargarVector (int v[], int n)
+{
+	int i=0;
+	while (i<n)
+	{
+		cout<<"V["<<i<<"]= ";
+		cin>>v[i];
+		i++;
+	}
+}
+
+void mostrarVector (int v[], int n)
+{
+	int i=0;
+	while (i<n)
+	{
+		cout<<v[i]<<"\t";
+		i++;
+	}
+}
+
+int mayorCercano (int v[], int n, int x)
+{
+	if (n==1)
+	{
+		if (v[0]>x)
+			return v[0];
+		else
+			return -1;
+	}
+	else
+	{
+		int c=mayorCercano (v,n-1,x);
+		if (c==-1)
+		{
+			if (v[n-1]>x)
+				return v[n-1];
+			else
+				return -1;
+		}
+
+		else 
+		{
+			if (v[n-1]>x)
+			{
+				if (v[n-1]<c)
+					return v[n-1];
+				else
+					return c;
+			}
+			else
+				return c;
+		}
+	}
+}
