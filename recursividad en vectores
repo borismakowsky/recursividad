@@ -1,0 +1,178 @@
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#define MAX 100
+
+using namespace std;
+void cargarVector (int v[], int n);
+void mostrarVector (int v[], int n);
+int sumaVector (int v[], int n);
+int sumaPares (int v[], int n);
+int elementoMenor (int v[], int n);
+void cuadrados (int v[], int n);
+bool existe (int v[], int n, int x);
+int promedioVector(int v[],int n);
+
+void main()
+{
+	int v[MAX], n;
+	int suma,sPares,menor,x;
+	float promedio,m;
+	cout<<"Dimension del vector: ";
+	cin>>n;
+	cargarVector (v,n);
+	cout<<endl;
+	mostrarVector (v,n);
+	cout<<endl;
+	cout<<endl<<"-----------------------------------------------------"<<endl;
+
+	suma=sumaVector (v,n);
+	cout<<endl<<"La suma de los elementos del vector es: "<<suma;
+
+	sPares=sumaPares (v,n);
+	cout<<endl<<"La suma de los elementos pares del vector es: "<<sPares;
+
+	menor=elementoMenor (v,n);
+	cout<<endl<<"El elemento menor del vector es: "<<menor;
+
+	cout<<endl<<"Los cuadrados de los elementos son: "<<endl;
+	cuadrados (v,n);
+	mostrarVector (v,n);
+
+	cout<<endl<<"Escriba el numero que desea ver si existe: ";
+	cin>>x;
+	cout<<endl;
+	if (existe (v,n,x))
+		cout<<"El elemento existe"<<endl;
+	else
+		cout<<"El elemento no existe"<<endl;
+
+	cout<<endl<<"-----------------------------------------------------"<<endl;
+	cout<<"Dimension del vector: ";
+	cin>>m;
+	cargarVector (v,n);
+	cout<<endl;
+	mostrarVector (v,n);
+	promedio=promedioVector(v,m);
+	cout<<endl<<"El promedio de los elementos del vector es: "<<promedio;
+	
+
+
+	getch();
+}
+
+void cargarVector (int v[], int n)
+{
+	int i=0;
+	while (i<n)
+	{
+		cout<<"V["<<i<<"]= ";
+		cin>>v[i];
+		i++;
+	}
+}
+
+void mostrarVector (int v[], int n)
+{
+	int i=0;
+	while (i<n)
+	{
+		cout<<v[i]<<"\t";
+		i++;
+	}
+}
+
+int sumaVector (int v[], int n)
+{
+	if (n==1)
+		return v[0];
+	else
+	{
+		int s= sumaVector (v,n-1);
+		return s+v[n-1];
+	}
+}
+
+int sumaPares (int v[], int n)
+{
+	if (n==1)
+	{
+		if (v[0]%2==0)
+			return v[0];
+		else
+		{
+			return 0;
+		}
+	}
+	else
+	{
+		int x=sumaPares (v,n-1);
+		if (v[n-1]%2==0)
+			return x+v[n-1];
+		else
+			return x;
+	}
+}
+
+int elementoMenor (int v[], int n)
+{
+	if (n==1)
+		return v[0];
+	else
+	{
+		int x=elementoMenor (v,n-1);
+		if (v[n-1]<x)
+			return v[n-1];
+		else
+			return x;
+	}
+}
+
+void cuadrados (int v[], int n)
+{
+	if (n==1)
+		v[0]=(v[0]*v[0]);
+	else
+	{
+		cuadrados (v,n-1);
+		v[n-1]=(v[n-1]*v[n-1]);
+	}
+
+}
+
+bool existe (int v[], int n, int x)
+{
+	if (n==1)
+	{
+		if (v[0]==x)
+			return true;
+		else
+			return false;
+	}
+	else
+	{
+		bool s= existe(v,n-1,x);
+		if (s)
+			return true;
+		else
+		{
+			if (v[n-1]==x)
+				return true;
+			else
+				return false;
+		}
+
+	}
+}
+
+int promedioVector(int v[],int n)
+{
+	if (n==1)
+		return v[0];
+	else
+	{
+		float x=promedioVector(v,n-1);
+		return ((x+v[n-1])/(n));
+	}
+
+}
