@@ -1,38 +1,33 @@
-
 #include "stdafx.h"
 #include "conio.h"
 #include <iostream>
 #define MAX 50
 
 using namespace std;
-void cargarVector (float v[], float n);
-void mostrarVector (float v[], float n);
-float promedio (float v[], float n, float i, float j);
+void cargarVector (int v[], int n);
+void mostrarVector (int v[], int n);
+float promedio (int v[],int i, int k);
 
 void main()
 {
-	int v[MAX];
-	float n,i,j,prom;
+	int v[MAX],i,k,n;
+	float prom;
 	cout<<"Dimension del vector: ";
 	cin>>n;
 	cargarVector (v,n);
 	cout<<endl;
 	mostrarVector (v,n);
 	cout<<endl;
-	cout<<"Ingrese la posicion donde va a empezar a sacar el promedio";
+	cout<<"Ingrese desde que posicion empieza el subvector: ";
 	cin>>i;
-	cout<<"Ingrese la posicion donde va a terminar de sacar el promedio";
-	cin>>j;
-	i=i-1;
-	j=j-1;
-	j=(n-j-1);
-	prom=promedio (v,n,i,j);
-	cout<<endl<<"el promedio es: "<<prom;
-
+	cout<<"Ingrese en que posicion termina el subvector: ";
+	cin>>k;
+	prom=promedio(v,i,k);
+	cout<<"El promedio es: "<<prom;
 	getch();
 }
 
-void cargarVector (float v[], float n)
+void cargarVector (int v[], int n)
 {
 	int i=0;
 	while (i<n)
@@ -43,7 +38,7 @@ void cargarVector (float v[], float n)
 	}
 }
 
-void mostrarVector (float v[], float n)
+void mostrarVector (int v[], int n)
 {
 	int i=0;
 	while (i<n)
@@ -53,13 +48,15 @@ void mostrarVector (float v[], float n)
 	}
 }
 
-float promedio (float v[], float n, float i, float j)
+float promedio (int v[],int i, int k)
 {
+	float n=k-i+1;
 	if (n==1)
-		return v[0];
+		return v[i];
 	else
 	{
-		float p=promedio(v,n,i,j);
-		return (p*(n-i-j-1)+v[n-j])/(n-i-j);
+		float p=promedio(v,i,k-1);
+		return (p*(k-1)+v[k])/n;
+
 	}
 }
