@@ -1,0 +1,69 @@
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#define MAX 50
+
+
+using namespace std;
+void cargarVector (int v[], int n);
+void mostrarVector (int v[], int n);
+bool ordenado (int v[], int n);
+
+void main()
+{
+	int v[MAX],n;
+	cout<<"Dimension del vector: ";
+	cin>>n;
+	cargarVector (v,n);
+	cout<<endl;
+	mostrarVector (v,n);
+	cout<<endl;
+	if (ordenado(v,n))
+		cout<<"Esta ordenado ";
+	else
+		cout<<"No esta ordenado ";
+
+	getch();
+}
+
+void cargarVector (int v[], int n)
+{
+	int i=0;
+	while (i<n)
+	{
+		cout<<"V["<<i<<"]= ";
+		cin>>v[i];
+		i++;
+	}
+}
+
+void mostrarVector (int v[], int n)
+{
+	int i=0;
+	while (i<n)
+	{
+		cout<<v[i]<<"\t";
+		i++;
+	}
+}
+
+bool ordenado (int v[], int n)
+{
+	if (n==1)
+		return true;
+	else
+	{
+		
+			bool x=ordenado (v,n-1);
+			if (v[n-1]>=v[n-2])
+			{
+				if (x)
+					return true;
+				else
+					return false;
+			}
+			else
+				return false;
+		}
+
+}
