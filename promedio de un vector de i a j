@@ -56,7 +56,7 @@ float promedio (int v[],int i, int k)
 	else
 	{
 		float p=promedio(v,i,k-1);
-		return (p*(k-1)+v[k])/n;
+		return (p*(k-2)+v[k])/n;
 
 	}
 }
