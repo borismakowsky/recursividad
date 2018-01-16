@@ -50,7 +50,8 @@ void mostrarVector (int v[], int n)
 
 int suma (int v[],int i, int k)
 {
-	if (i==1 && k==1)
+	int n=k-i+1;
+	if (n==1)
 		return v[i];
 	else
 	{
