@@ -1,0 +1,59 @@
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#define MAX 100
+
+using namespace std;
+int mayorCercano (int n, int x);
+
+void main()
+{
+	int n,x,mayor;
+	cout<<"Ingrese el numero de varios digitos: ";
+	cin>>n;
+	cout<<"Ingrese el valor x mayor a 0: ";
+	cin>>x;
+	mayor=mayorCercano (n,x);
+	cout<<"El numero mayor cercano a "<<x<<" es: "<<mayor;
+	getch();
+}
+
+int mayorCercano (int n, int x)
+{
+	if (n<10)
+	{
+		if(n>x)
+			return n;
+		else
+		{
+			return -1;
+		}
+	}
+	else
+	{
+			int m=mayorCercano(n/10,x);
+			if (m==-1)
+			{
+				if((n%10)>x)
+					return (n%10);
+				else
+					return -1;
+			}
+
+			else
+			{
+				if((n%10)>x)
+			{
+				if(n%10<m)
+					return (n%10);
+				else
+					return m;
+			}
+			else
+				return m;
+
+			}
+
+
+	}
+}
