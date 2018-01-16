@@ -1,0 +1,61 @@
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#define MAX 50
+
+using namespace std;
+void cargarVector (int v[], int n);
+void mostrarVector (int v[], int n);
+int suma (int v[],int i, int k);
+
+void main()
+{
+	int v[MAX], n,i,k,nsub,sumavec;
+	cout<<"Dimension del vector: ";
+	cin>>n;
+	cargarVector (v,n);
+	cout<<endl;
+	mostrarVector (v,n);
+	cout<<endl;
+	//realizar la suma de los elementos de un subvector. desde la posicion i hasta k;
+	cout<<"Ingrese desde que posicion empieza el subvector: ";
+	cin>>i;
+	cout<<"Ingrese en que posicion termina el subvector: ";
+	cin>>k;
+	sumavec=suma(v,i,k);
+	cout<<"La suma de los elementos es: "<<sumavec;
+	getch();
+}
+
+void cargarVector (int v[], int n)
+{
+	int i=0;
+	while (i<n)
+	{
+		cout<<"V["<<i<<"]= ";
+		cin>>v[i];
+		i++;
+	}
+}
+
+void mostrarVector (int v[], int n)
+{
+	int i=0;
+	while (i<n)
+	{
+		cout<<v[i]<<"\t";
+		i++;
+	}
+}
+
+int suma (int v[],int i, int k)
+{
+	if (i==1 && k==1)
+		return v[i];
+	else
+	{
+		int s=suma(v,i,k-1);
+		return (s+v[k]);
+
+	}
+}
