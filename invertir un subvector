@@ -7,6 +7,7 @@ using namespace std;
 void cargarVector (int v[], int n);
 void mostrarVector (int v[], int n);
 void invertirSubvector (int v[], int i, int j);
+void mostrarSubvector (int v[], int i, int j);
 
 void main()
 {
@@ -23,7 +24,7 @@ void main()
 	cin>>j;
 	invertirSubvector (v,i,j);
 	cout<<endl;
-	mostrarVector (v,n);
+	mostrarSubvector (v,i,j);
 	getch();
 
 }
@@ -46,6 +47,16 @@ void mostrarVector (int v[], int n)
 	{
 		cout<<v[i]<<"\t";
 		i++;
+	}
+}
+
+void mostrarSubvector (int v[], int i, int j)
+{
+	int k=i;
+	while (k<=j)
+	{
+		cout<<v[k]<<"\t";
+		k++;
 	}
 }
 
