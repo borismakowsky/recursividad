@@ -1,0 +1,77 @@
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#define MAX 100
+
+using namespace std;
+void cargarVector (int vec[], int n);
+void mostrarVector (int vec[], int n);
+bool esCapicua(int vec[], int i, int k);
+
+void main()
+{
+	int vec[MAX],n,i,k;
+	cout<<"Dimension vector: ";
+	cin>>n;
+	cargarVector(vec,n);
+	cout<<endl;
+	mostrarVector(vec,n);
+	cout<<endl;
+	i=0;
+	k=n-1;
+	if (esCapicua(vec,i,k))
+		cout<<"Es capicua";
+	else
+		cout<<"No es capicua";
+	
+	getch();
+}
+
+void cargarVector (int vec[], int n)
+{
+	int i=0;
+	while (i<n)
+	{
+		cout<<"Vec["<<i<<"]= ";
+		cin>>vec[i];
+		i++;
+	}
+	cout<<endl;
+}
+
+void mostrarVector (int vec[], int n)
+{
+	int i=0;
+	while (i<n)
+	{
+		cout<<vec[i]<<"\t";
+		i++;
+	}
+	cout<<endl;
+}
+
+bool esCapicua(int vec[], int i, int k)
+{
+	int n=k-i+1;
+	if (n==1)
+		return true;
+	else
+	{
+		if (n==2)
+		{
+			if (vec[i]==vec[k])
+				return true;
+			else
+				return false;
+
+		}
+		else
+		{
+			bool c=esCapicua(vec,i+1,k-1);
+			if (c && vec[i]==vec[k])
+				return true;
+			else
+				return false;
+		}
+	}
+}
