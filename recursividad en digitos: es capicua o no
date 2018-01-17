@@ -1,0 +1,55 @@
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#include "math.h"
+
+using namespace std;
+
+int invertir (int n);
+bool capicua (int n, int m);
+
+void main()
+{
+	int n,m;
+	cout<<"Ingrese digitos: ";
+	cin>>n;
+	m=invertir(n);
+	cout<<m<<endl;
+	if (capicua (n,m))
+		cout<<"Es capicua";
+	else
+		cout<<"No es capicua";
+	getch();
+}
+
+int invertir (int n)
+{
+	int dig,m=0;
+	while (n>=10)
+	{
+		dig=(n%10);
+		m=(m*10)+dig;
+		n=n/10;
+	}
+	m=(m*10)+n;
+	return m;
+}
+
+bool capicua (int n, int m)
+{
+	if (n<10)
+		return true;
+	else
+	{
+		
+		if ((n%10)==(m%10))
+		{
+			if (capicua ((n/10),(m/10)))
+				return true;
+			else
+				return false;
+		}
+		else
+			return false;
+	}
+}
