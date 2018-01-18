@@ -1,0 +1,100 @@
+#include "stdafx.h"
+#include "iostream"
+#include "conio.h"
+#include "math.h"
+
+using namespace std;
+
+
+void cargar(int v[], int n)
+{
+ int x; 
+ for(int i=0;i<n;i++)
+ {
+	 cout<<"Elemento:"<<i<<"  ";
+	 cin>>x;
+	 v[i]=x;
+ }
+ cout<<endl;
+}
+
+void mostrar(int v[], int n)
+{
+ for(int i=0;i<n;i++)
+	 cout<<v[i];
+
+ cout<<endl;
+}
+
+float promedio (int v[],int i,int k)
+{
+	int n=k-i+1;
+	if(n==1)
+		return v[i];
+	else
+	{
+		float p=promedio(v,i,k-1);
+		return (p*(n-1)+v[k])/n;
+	}
+}
+
+int sumapares(int v[],int n)
+{
+	if(n==1)
+	{
+		if(v[0]%2==0)
+			return v[0];
+		else
+			return 0;
+	}
+	else
+	{
+		int x=sumapares(v,n-1);
+		if(v[n-1]%2==0)
+			return x+v[n-1];
+		else
+			return x;
+	}
+}
+bool existe(int v[],int n,int t)
+{
+	if(n==1)
+	{
+		if(v[0]==t)
+			return true;
+		else
+			return false;
+	}
+	else
+	{
+		bool x=existe(v,n-1,t);
+		if(x)
+			return true;
+		else
+		{
+			if (v[n-1]==t)
+				return true;
+			else
+				return false;
+		}
+	}
+}
+
+
+void main()
+{
+	int i,k,n,v[50];
+	int s,t;
+	cout<<"Ingrese el tamanho del vector"<<endl;
+	cin>>n;
+	cout<<"Ingrese el numero que desea ver si existe: "<<endl;
+	cin>>t;
+	cargar(v,n);
+	if(existe(v,n,t))
+		cout<<"Si existe"<<endl;
+	else
+		cout<<"No existe"<<endl;
+
+	getch();
+
+}
